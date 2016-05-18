@@ -1,0 +1,22 @@
+levels:
+  - collection
+  - work
+  - page
+
+url_pattern:
+  - |
+    https?://digi.bib.uni-mannheim.de
+    /fileadmin
+    /(?<collection>[^/]+)
+    /(?<work>[^/]+)
+    /[^\/]+
+    /[^_]+_(?<page>\d+)
+
+filepath:
+  hocr: '/ocr-corrections/<collection>/<work>/gt/<page>/<work>_<page>.hocr'
+  max: '/fileadmin/<collection>/<work>/max/<page>/<work>_<page>.jpg'
+
+find:
+  collections: 'fileadmin -maxdepth 1 -type d'
+  works: 'fileadmin/<collection> -maxdepth 1 -type d'
+  thumbnails: 'fileadmin/<collection>/<work>/thumbs/ -type f'
